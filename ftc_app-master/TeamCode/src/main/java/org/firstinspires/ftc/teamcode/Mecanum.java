@@ -34,13 +34,12 @@ public class Mecanum extends LinearOpMode {
             {
                 if(limitasus.getState() == true && limitajos.getState() == false) {stare=1; k=6;}
                 if(limitajos.getState() == true && limitasus.getState() == false) {stare=0; k=5;}
+                if(stare == 1) rampa.setPower(-0.75);
+                if(stare == 0) rampa.setPower(0.75);
                 if(limitajos.getState() == false && limitasus.getState() == false)
                 {
                     stare=3;
                 }
-                if(stare == 1) rampa.setPower(-0.75);
-                if(stare == 2) rampa.setPower(0.75);
-
 
             }
             if(stare == 3)
