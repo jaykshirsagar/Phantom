@@ -11,7 +11,7 @@ public class Mecanum extends LinearOpMode {
     private DcMotor frontRight = null;
     private DcMotor backLeft = null;
     private DcMotor backRight = null;
-    
+    private DcMotor collector = null;
     private DcMotor rampa = null;
     private DigitalChannel limitasus = null;
     private DigitalChannel limitajos = null;
@@ -22,7 +22,7 @@ public class Mecanum extends LinearOpMode {
         frontRight = hardwareMap.get(DcMotor.class , "frontright");
         backLeft = hardwareMap.get(DcMotor.class ,  "backleft");
         backRight = hardwareMap.get(DcMotor.class , "backright");
-
+        collector = hardwareMap.get(DcMotor.class , "collector");
         rampa = hardwareMap.get(DcMotor.class ,"rampa");
         limitajos = hardwareMap.get(DigitalChannel.class , "limitajos");
         limitasus = hardwareMap.get(DigitalChannel.class , "limitasus");
@@ -30,6 +30,10 @@ public class Mecanum extends LinearOpMode {
         int k=5;
         while(opModeIsActive() && !isStopRequested())
         {
+            if(this.gamepad2.left_stick_y !=0)
+            {
+                collector.setPower(-this.gamepad2.left_stick_y);
+            }
             if(this.gamepad1.a == true)
             {
                 if(limitasus.getState() == true && limitajos.getState() == false) {stare=1; k=6;}
